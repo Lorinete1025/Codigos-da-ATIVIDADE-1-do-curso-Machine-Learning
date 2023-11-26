@@ -1,0 +1,175 @@
+# Codigos-da-ATIVIDADE-1-do-curso-Machine-Learning | Aluna: Lóren D. Silva
+O presente repositório público tem como principal objetivo obter a nota da ATIVIDADE 1 do curso de Machine Learning (Bootcamp | Avanti)
+
+- O link abaixo irá direcionar para as respostas que foram identadas no Google Colaboratory 🠗
+https://colab.research.google.com/drive/17HmsRf47MW7Dgk5VWChZ3yErnQWR6Cp6?usp=sharing
+
+- Ou, as respostas podem ser vistas abaixo também 🠗
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 1º - Escreva uma função que receba uma lista de números e retorne outra lista com os números primos presentes. #
+
+def encontrar_numeros_primos(lista):
+  primos = []
+  for num in lista:
+    if num > 1:
+      for i in range(2, int(num**0.5) + 1):
+        if (num % i) == 0:
+          break
+
+      else:
+        primos.append(num)
+
+  return primos
+
+entrada_usuario = input('Digite alguns números, separados por espaço, para criar a lista: ')
+numeros = [int(x) for x in entrada_usuario.split()]
+
+numeros_primos_encontrados = encontrar_numeros_primos(numeros)
+print('Os números primos encontramos na lista foram:', numeros_primos_encontrados)
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 2º - Escreva uma função que receba duas listas e retorne outra lista com os elementos que estão presentes em apenas uma das listas. #
+
+def elementos_exclusivos(lista1, lista2):
+    exclusivos = []
+    for elemento in lista1:
+        if elemento not in lista2:
+            exclusivos.append(elemento)
+
+    for elemento in lista2:
+        if elemento not in lista1:
+            exclusivos.append(elemento)
+
+    return exclusivos
+
+entrada_da_lista1 = input('Digite os valores, separados por espaço, para criar a primeira lista: ')
+lista1 = [int(x) for x in entrada_da_lista1.split()]
+
+entrada_da_lista2 = input('Digite os valores, separados por espaço, para criar a segunda lista: ')
+lista2 = [int(x) for x in entrada_da_lista2.split()]
+resultado = elementos_exclusivos(lista1, lista2)
+print("Elementos exclusivos:", resultado)
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 3º - Dada uma lista de números inteiros, escreva uma função para encontrar o segundo maior valor na lista. #
+
+def encontrar_segundo_maior(lista):
+    if len(lista) < 2:
+        return 'A lista necessita de pelo menos dois elementos.'
+
+    numero_maximo = max(lista)
+    lista = [valor for valor in lista if valor != numero_maximo]
+
+    segundo_maior_numero = max(lista)
+    return segundo_maior_numero
+
+entrada = input('Digite alguns números, separados por espaço, para criar a lista: ')
+numeros = [int(numero) for numero in entrada.split()]
+
+resultado = encontrar_segundo_maior(numeros)
+print('O segundo maior valor na lista é:', resultado)
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 4º - Crie uma função que receba uma lista de tuplas, cada uma contendo o nome e a idade de uma pessoa, e retorne a lista ordenada pelo nome das pessoas em ordem alfabética. #
+
+def ordenar_por_nome(lista_de_pessoas):
+    lista_ordenada = sorted(lista_de_pessoas, key=lambda pessoa: pessoa[0])
+    return lista_ordenada
+
+# Exemplo de uso
+lista_pessoas = [("Maria", 25), ("João", 30), ("Ana", 22), ("Pedro", 28)]
+lista_ordenada = ordenar_por_nome(lista_pessoas)
+print(f'Lista ordenada por nome: {lista_ordenada}')
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 5º - Dada uma lista contendo números inteiros, como você encontraria o maior número e o menor número dessa lista em uma única passagem? # 
+
+def encontrar_maximo_e_minimo(lista):
+    if not lista:
+        return None, None
+
+    return max(lista), min(lista)
+
+# Exemplo de uso
+numeros = [10, 5, 8, 12, 7, 3, 15]
+maximo, minimo = encontrar_maximo_e_minimo(numeros)
+print(f'Maior número: {maximo}')
+print(f'Menor número: {minimo}')
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 6º - Utilizando pandas, como realizar a leitura de um arquivo CSV em um DataFrame e exibir as primeiras linhas? #
+
+import pandas as pd
+
+caminho_do_arquivo = 'seu_arquivo.csv'
+dataframe = pd.read_csv(caminho_do_arquivo)
+print(dataframe.head())
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 7º - Utilizando pandas, como selecionar uma coluna específica e filtrar linhas em um “DataFrame” com base em uma condição? #
+
+import pandas as pd
+
+# Exemplo de uso
+dados = {'Nome': ['Amelie', 'Bruno', 'Cintia', 'Deyvid'],
+         'Idade': [25, 30, 22, 28],
+         'Cidade': ['Fortaleza', 'São Paulo', 'Belém', 'São Luís']}
+
+df = pd.DataFrame(dados)
+
+coluna_idade = df['Idade']
+print(f'Coluna | Idade:\n{coluna_idade}\n')
+
+linhas_filtradas = df[df['Idade'] > 25]
+print(f'Linhas com Idade maior que 25:\n{linhas_filtradas}')
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 8º - Utilizando pandas, como lidar com valores ausentes (NaN) em um DataFrame? #
+
+import pandas as pd
+
+dados = {'Nome': ['Amelie', 'Bruno', None, 'Deyvid'],
+         'Idade': [25, None, 22, 28],
+         'Cidade': ['Rio de Janeiro', 'São Paulo', None, 'Salvador']}
+
+df = pd.DataFrame(dados)
+valores_ausentes = df.isna()
+print(valores_ausentes)
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 9º - Completar o código sobre matplotlib.pyplot e numpy #
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig, axs = plt.subplots(ncols=2, nrows=2, figsize=(5.5, 3.5), constrained_layout=True)
+
+for row in range(2):
+    for col in range(2):
+        axs[row, col].annotate(f'axs[{row}, {col}]', (0.5, 0.5),
+                               transform=axs[row, col].transAxes,
+                               ha='center', va='center', fontsize=18,
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+# 10º - Completar o código sobre numpy, matplotlib e matplotlib.pyplot #
+
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+x = np.linspace(-2 * np.pi, 2 * np.pi, 100)
+y = np.sin(x)
+
+fig, ax = plt.subplots()
+ax.plot(x, y)
